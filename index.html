@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adaviv Anno v7</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" integrity="sha256-QVBN0oT74UhpCtEo4Ko+k3sNo+ykJFBBtGduw13V9vw=" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" type="text/css" href="css/semantic.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/paper-full.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Main canvg code -->
+  <script src="js/canvg.min.js"></script>
+</head>
+<body>
+
+<div>
+    <div class="ui fixed inverted menu grid">
+        <a class="item two wide column" id="export-btn"><i class="download icon"></i>.JSON</a>
+
+        <a id="box-tool" class="item one wide column">
+            <i id="box-icon" class="object ungroup outline big icon"></i>
+            <span id="box-tool-txt" class="tool-txt">Box</span>
+        </a>
+        <a id="brush-tool" class="item one wide column">
+            <!-- <i id="brush-icon" class="circle huge black icon"></i> -->
+            <i id="brush-icon" class="paint brush big icon"></i>
+            <!-- <i id="brush-icon" class="circle black large icon"></i> -->
+            <span id="brush-tool-txt" class="tool-txt">Brush</span>
+        </a>
+        <a id="grid-btn" class="item one wide column"><i class="chess board icon"></i><span>Grid line</span></a>
+
+        <a id="filter-1" class="item one wide column"><i class="sun icon"></i><span>Bright</span></a>
+        <a id="filter-2" class="item one wide column"><i class="adjust icon"></i><span>Contrast</span></a>
+        <a id="filter-3" class="item one wide column"><i class="image icon"></i><span>Gray</span></a>
+        <a id="filter-4" class="item one wide column"><i class="tint icon"></i><span>Hue</span></a>
+        <a id="filter-5" class="item one wide column"><i class="adjust icon"></i><span>invert</span></a>
+        <a id="filter-6" class="item one wide column"><i class="eye dropper icon"></i><span>Saturate</span></a>
+        <a id="filter-normal" class="item one wide column"><i class="image outline icon"></i><span>Normal</span></a>
+
+        <a class="item one wide column" id="export-png"><i class="download icon"></i>.PNG</a>
+        <a class="item one wide column" id="export-svg"><i class="download icon"></i>.SVG</a>
+        <a class="item one wide column" id="test">test</a>
+    </div>
+</div>
+<!-- Slider ------------------------------------------------------------------------------------------------------ -->
+<div id="brush-width-tool" class="top-slider">
+    <input id="slider" type="range" min="10" max="100" value="20" class="slider">
+</div>
+
+<div id="filter-1-tool" class="top-slider">
+    <input id="filter-1-slider" type="range" min="0" max="100" value="50" class="slider">
+</div>
+<div id="filter-2-tool" class="top-slider">
+    <input id="filter-2-slider" type="range" min="0" max="100" value="50" class="slider">
+</div>
+<div id="filter-3-tool" class="top-slider">
+    <input id="filter-3-slider" type="range" min="0" max="100" value="0" class="slider">
+</div>
+<div id="filter-4-tool" class="top-slider">
+    <input id="filter-4-slider" type="range" min="0" max="100" value="0" class="slider">
+</div>
+<div id="filter-5-tool" class="top-slider">
+    <input id="filter-5-slider" type="range" min="0" max="100" value="0" class="slider">
+</div>
+<div id="filter-6-tool" class="top-slider">
+    <input id="filter-6-slider" type="range" min="0" max="100" value="50" class="slider">
+</div>
+<div id="filter-7-tool" class="top-slider">
+    <input id="filter-7-slider" type="range" min="10" max="100" value="20" class="slider">
+</div>
+
+<br><br>
+<div class="ui grid">
+    <!-- Side bar ------------------------------------------------------------------------------------------------------ -->
+    <div id="temp-z" class="two wide column">
+
+        <div class="ui header" style="margin-left: 18px; margin-top: 30px"><i class="bug icon"></i>Reference</div>
+        <div class="ui divider" style="margin-left: 18px"></div>
+        <div id="anno-list" style="margin-left: 18px">
+            <div><span id="anno-0-number" class="anno-number">0</span> - total</div>
+            <br>
+            <div><i class="circle violet icon"></i><span id="anno-1-number" class="anno-number">0</span> - Bud - Terminal (Cola)</div>
+            <div><i class="circle teal icon"></i><span id="anno-2-number" class="anno-number">0</span> - Bud - Small</div>
+            <div><i class="circle blue icon"></i><span id="anno-3-number" class="anno-number">0</span> - Bud - uncertain</div>
+            <div><i class="circle red icon"></i><span id="anno-4-number" class="anno-number">0</span> - Anomalies</div>
+        </div>
+
+        <!-- Image input -->
+        <div class="ui header" style="margin-left: 18px"><i class="image icon"></i>Image</div>
+        <div class="ui divider" style="margin-left: 18px"></div>
+
+        <div id="input-imgs-table" class="ui form" style="margin-left: 18px">
+            <input class="ui button" type="file" id="imageLoader" name="imageLoader"/>
+        </div>
+
+        <!-- Comment input -->
+        <div class="ui header" style="margin-left: 18px"><i class="comment alternate icon"></i>Comment</div>
+        <div class="ui form" style="margin-left: 18px">
+            <div class="field">
+                <textarea id="comment-input" rows="4"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Editing space ------------------------------------------------------------------------------------------------- -->
+    <div class="fourteen wide column" style="padding-left: 9px">
+        <div>
+            <div id="test-zone" style="padding-top: 19px">
+                <img id="raster-img" class="filter" src="img/frontpage-1.png" alt="img" width="1368px" height="912px">
+                <img id="grid-img" class="filter" src="img/grid_green.png" alt="grid" width="1368px" height="912px">
+                <canvas id="canvas"  width="1368px" height="912px"></canvas>
+            </div>
+
+            <div id="input-tag" style="z-index: 3">
+                <button id="selection-1" class="circular ui icon violet tiny button selections">tb</button>
+                <button id="selection-2" class="circular ui icon teal tiny button selections">sb</button>
+                <button id="selection-3" class="circular ui icon blue tiny button selections">ub</button>
+                <button id="selection-4" class="circular ui icon red tiny button selections">a</button>
+            </div>
+
+            <div id="show-tag">
+            </div>
+        </div>
+        <!-- <img id="test-img" style="z-index: 1; position: relative; top: 300px; left: 600px;" class="filter" src="img/frontpage-1.png" alt="Smiley face" width="1368px" height="912px"> -->
+    </div>
+    <!-- Footer -------------------------------------------------------------------------------------------------------- -->
+
+    <canvas id="drawingArea" width="1368px" height="912px"></canvas>
+
+</div>
+<div id="mouse-follow"></div>
+</body>
+</html>

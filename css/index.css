@@ -1,0 +1,95 @@
+/*Something about the slider ------------------------------------------------------------------------------------------ */
+.slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 1px;
+	border-radius: 1px;
+	background: white;
+	outline: none;
+	opacity: 0.3;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+}
+
+.slider:hover {
+	opacity: 0.9;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: white;
+	cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: white;
+	cursor: pointer;
+}
+
+.top-slider {
+	position: absolute;
+	z-index: 3;
+	/*height: 50px;*/
+}
+
+/*Something about the slider ------------------------------------------------------------------------------------------ */
+#input-tag {
+	position: absolute;
+	left: 300px;
+ 	top: 150px;
+}
+
+
+.ui.button{
+	margin: 0 0.25em 0.25em 0
+}
+
+.tool-txt{
+	color: white;
+}
+
+#canvas {
+	position: absolute;
+	z-index: 2;
+}
+
+#input-tag {
+	z-index: 2;
+}
+
+#raster-img {
+	position: absolute;
+}
+
+#grid-img {
+	position: absolute;
+}
+
+#mouse-follow {
+	position: absolute;
+	border-radius: 50%;
+	border: 10px solid white;
+	opacity: 0.6;
+	z-index: 0;
+	top: 0;
+	left: 0;
+}
+
+#temp-z {
+	z-index: 2;
+}
+
+.filter {
+	-webkit-filter: brightness(1) contrast(100%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(1);
+	filter: brightness(1) contrast(100%) grayscale(0%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(1);
+}
+
+.anno-number {
+	color: green;
+}
